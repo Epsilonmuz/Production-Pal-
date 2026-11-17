@@ -1,0 +1,37 @@
+PRODUCTION PAL - INSTALL (no building needed)
+
+1. Double-click "Production Pal Installer.pkg".
+   If macOS says it can't be opened (it isn't notarised yet), either
+   right-click the .pkg > Open > Open, or go to System Settings >
+   Privacy & Security and click "Open Anyway".
+   If it still refuses, open Terminal and run:
+       xattr -dr com.apple.quarantine ~/Downloads/"Production Pal Installer.pkg"
+
+   The installer puts:
+     Production Pal.app      -> /Applications
+     Pal Ears.vst3           -> /Library/Audio/Plug-Ins/VST3
+     Pal Ears.component (AU) -> /Library/Audio/Plug-Ins/Components
+     the FL Studio script    -> Documents/Image-Line/FL Studio/Settings/Hardware/Production Pal
+
+2. Open Production Pal (Applications). Click Settings, paste your Claude API
+   key (console.anthropic.com > API keys) and Save.
+
+3. The first time you press Control + Option + P, macOS asks to allow Screen
+   Recording for Production Pal: System Settings > Privacy & Security >
+   Screen Recording > turn on Production Pal, then quit and reopen it.
+
+4. In FL Studio: Options > Manage plugins > Find more plugins (rescan), then
+   put "Pal Ears" on the Master (and on any track you want Pal to hear).
+   Set its Role (Master, 808 / bass, Vocal lead...).
+
+5. Optional, so Pal can read your mixer: in FL Studio go to
+   Options > MIDI settings.
+     Input:  select "Production Pal", Enable it, Controller type
+             "Production Pal (user)", Port 10.
+     Output: select "Production Pal", Port 10.
+   (Production Pal must be open so these ports exist.)
+
+Hotkeys (work while FL Studio is in front):
+   Control + Option + P   ask a question (screenshot first)
+   Control + Option + K   quick check: "what should I fix right now?"
+   Control + Option + S   stop speaking

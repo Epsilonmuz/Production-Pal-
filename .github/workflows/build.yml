@@ -1,0 +1,103 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Engine + FL script tests (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Analyzer tests
+        run: |
+          c++ -std=c++17 -O2 -Wall -Wextra -Werror -IShared tests/AnalyzerTests.cpp -o analyzer_tests
+          ./analyzer_tests
+      - name: FL Studio script tests
+        run: python3 tests/test_fl_script.py
+
+  macos:
+    name: macOS universal build + installer
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuse unoptimised Xcode configurations
+        run: |
+          if grep -l "GCC_OPTIMIZATION_LEVEL = 0" */Builds/MacOSX/*.xcodeproj/project.pbxproj; then
+            echo "::error::An Xcode configuration is -O0. Set optimisation to -O3 in the .jucer and resave."
+            exit 1
+          fi
+
+      - name: Configure
+        run: >
+          cmake -B build -G "Unix Makefiles"
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+          -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0
+
+      - name: Build
+        run: >
+          cmake --build build --config Release -j 4
+          --target PalEars_VST3 PalEars_AU PalEars_Standalone ProductionPalApp analyzer_tests client_tests
+
+      - name: Run tests
+        run: |
+          ./build/analyzer_tests
+          ./build/client_tests_artefacts/Release/client_tests
+
+      - name: Check universal binaries
+        run: |
+          lipo -info "build/PalEars_artefacts/Release/VST3/Pal Ears.vst3/Contents/MacOS/Pal Ears"
+          lipo -info "build/ProductionPalApp_artefacts/Release/Production Pal.app/Contents/MacOS/Production Pal"
+
+      - name: pluginval (strictness 5)
+        run: |
+          curl -L -o pluginval.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_macOS.zip
+          unzip -q pluginval.zip
+          ./pluginval.app/Contents/MacOS/pluginval --strictness-level 5 --validate-in-process \
+            --validate "build/PalEars_artefacts/Release/VST3/Pal Ears.vst3"
+
+      - name: AU validation
+        run: |
+          mkdir -p ~/Library/Audio/Plug-Ins/Components
+          cp -R "build/PalEars_artefacts/Release/AU/Pal Ears.component" ~/Library/Audio/Plug-Ins/Components/
+          killall -9 AudioComponentRegistrar || true
+          sleep 2
+          auval -v aufx PEar Epsn
+
+      - name: Build installer
+        run: |
+          VERSION=$(grep -m1 -oE "VERSION [0-9]+\.[0-9]+\.[0-9]+" CMakeLists.txt | awk '{print $2}')
+          bash installer/build_pkg.sh build "$VERSION" dist
+          cd dist && zip -r "../Production-Pal-macOS-$VERSION.zip" . && cd ..
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Production-Pal-macOS
+          path: Production-Pal-macOS-*.zip
+
+      - name: Release (on version tags)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Production-Pal-macOS-*.zip
+
+  perf:
+    name: Real-time budget (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15-intel, macos-15]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Time the analyser per audio block
+        run: |
+          c++ -std=c++17 -O3 -IShared tests/AnalyzerTests.cpp -o analyzer_tests
+          ./analyzer_tests | tee perf.txt
+          grep PERF perf.txt >> "$GITHUB_STEP_SUMMARY"

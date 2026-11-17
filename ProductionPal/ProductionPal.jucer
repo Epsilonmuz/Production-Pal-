@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="qt1xWR" name="Production Pal" projectType="guiapp" useAppConfig="0" addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="Epsilon Sounds" companyWebsite="https://github.com/Epsilonmuz/Production-Pal-" version="0.1.0" bundleIdentifier="com.epsilonsounds.productionpal" displaySplashScreen="0" cppLanguageStandard="17" defines="PRODUCTION_PAL_VERSION=&quot;0.1.0&quot;&#10;JUCE_WEB_BROWSER=0&#10;JUCE_USE_CURL=0">
+  <MAINGROUP id="UdwyDA" name="Production Pal">
+    <GROUP id="{EEn9Pt}" name="Source">
+      <FILE id="KPkrRJ" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="c2FgTj" name="MainComponent.cpp" compile="1" resource="0" file="Source/MainComponent.cpp"/>
+      <FILE id="5Q3aVs" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="15Wh8v" name="ReadingsHub.cpp" compile="1" resource="0" file="Source/ReadingsHub.cpp"/>
+      <FILE id="9btnal" name="ReadingsHub.h" compile="0" resource="0" file="Source/ReadingsHub.h"/>
+      <FILE id="zzkHhC" name="ClaudeClient.cpp" compile="1" resource="0" file="Source/ClaudeClient.cpp"/>
+      <FILE id="jZ814t" name="ClaudeClient.h" compile="0" resource="0" file="Source/ClaudeClient.h"/>
+      <FILE id="jr6kUn" name="ScreenCapture.cpp" compile="1" resource="0" file="Source/ScreenCapture.cpp"/>
+      <FILE id="7v2ihl" name="ScreenCapture.h" compile="0" resource="0" file="Source/ScreenCapture.h"/>
+      <FILE id="8sNofT" name="Speech.cpp" compile="1" resource="0" file="Source/Speech.cpp"/>
+      <FILE id="JOdnuP" name="Speech.h" compile="0" resource="0" file="Source/Speech.h"/>
+      <FILE id="UGCmIL" name="GlobalHotkeys.h" compile="0" resource="0" file="Source/GlobalHotkeys.h"/>
+      <FILE id="cIumwL" name="GlobalHotkeys_mac.mm" compile="1" resource="0" file="Source/GlobalHotkeys_mac.mm"/>
+      <FILE id="xDuV3y" name="GlobalHotkeys_other.cpp" compile="1" resource="0" file="Source/GlobalHotkeys_other.cpp"/>
+      <FILE id="Xq7BKa" name="Knowledge.h" compile="0" resource="0" file="Source/Knowledge.h"/>
+    </GROUP>
+    <GROUP id="{A2kj9s}" name="Shared">
+      <FILE id="9J10Nc" name="PalAnalyzer.h" compile="0" resource="0" file="../Shared/PalAnalyzer.h"/>
+      <FILE id="H6B9rD" name="PalProtocol.h" compile="0" resource="0" file="../Shared/PalProtocol.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraFrameworks="Carbon">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" optimisation="3"  macOSDeploymentTarget="12.0"/>
+        <CONFIGURATION isDebug="0" name="Release" optimisation="3"  macOSDeploymentTarget="12.0"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" optimisation="3" />
+        <CONFIGURATION isDebug="0" name="Release" optimisation="3" />
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" optimisation="3" />
+        <CONFIGURATION isDebug="0" name="Release" optimisation="3" />
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+</JUCERPROJECT>

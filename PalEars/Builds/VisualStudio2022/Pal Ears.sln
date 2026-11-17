@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio Version 17
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pal Ears - Standalone Plugin", "Pal Ears_StandalonePlugin.vcxproj", "{9C1E26DE-5979-B793-B1CF-794BAECE9A23}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B4DE978C-53C5-A1E4-BEB2-34AFABE58642} = {B4DE978C-53C5-A1E4-BEB2-34AFABE58642}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pal Ears - VST3", "Pal Ears_VST3.vcxproj", "{983A84CA-817C-D68C-7D53-68A863E864B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B4DE978C-53C5-A1E4-BEB2-34AFABE58642} = {B4DE978C-53C5-A1E4-BEB2-34AFABE58642}
+		{93383C86-C84B-C7F4-B68C-7A6D302185C2} = {93383C86-C84B-C7F4-B68C-7A6D302185C2}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pal Ears - Shared Code", "Pal Ears_SharedCode.vcxproj", "{B4DE978C-53C5-A1E4-BEB2-34AFABE58642}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pal Ears - VST3 Manifest Helper", "Pal Ears_VST3ManifestHelper.vcxproj", "{93383C86-C84B-C7F4-B68C-7A6D302185C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{983A84CA-817C-D68C-7D53-68A863E864B8}.Debug|x64.ActiveCfg = Debug|x64
+		{983A84CA-817C-D68C-7D53-68A863E864B8}.Debug|x64.Build.0 = Debug|x64
+		{983A84CA-817C-D68C-7D53-68A863E864B8}.Release|x64.ActiveCfg = Release|x64
+		{983A84CA-817C-D68C-7D53-68A863E864B8}.Release|x64.Build.0 = Release|x64
+		{9C1E26DE-5979-B793-B1CF-794BAECE9A23}.Debug|x64.ActiveCfg = Debug|x64
+		{9C1E26DE-5979-B793-B1CF-794BAECE9A23}.Debug|x64.Build.0 = Debug|x64
+		{9C1E26DE-5979-B793-B1CF-794BAECE9A23}.Release|x64.ActiveCfg = Release|x64
+		{9C1E26DE-5979-B793-B1CF-794BAECE9A23}.Release|x64.Build.0 = Release|x64
+		{B4DE978C-53C5-A1E4-BEB2-34AFABE58642}.Debug|x64.ActiveCfg = Debug|x64
+		{B4DE978C-53C5-A1E4-BEB2-34AFABE58642}.Debug|x64.Build.0 = Debug|x64
+		{B4DE978C-53C5-A1E4-BEB2-34AFABE58642}.Release|x64.ActiveCfg = Release|x64
+		{B4DE978C-53C5-A1E4-BEB2-34AFABE58642}.Release|x64.Build.0 = Release|x64
+		{93383C86-C84B-C7F4-B68C-7A6D302185C2}.Debug|x64.ActiveCfg = Debug|Win32
+		{93383C86-C84B-C7F4-B68C-7A6D302185C2}.Debug|x64.Build.0 = Debug|Win32
+		{93383C86-C84B-C7F4-B68C-7A6D302185C2}.Release|x64.ActiveCfg = Release|Win32
+		{93383C86-C84B-C7F4-B68C-7A6D302185C2}.Release|x64.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+/build/
+cmake-build*/
+/dist/
+/*.zip
+**/Builds/MacOSX/build/
+**/Builds/LinuxMakefile/build/
+**/Builds/VisualStudio2022/x64/
+**/Builds/VisualStudio2022/.vs/
+*.xcuserstate
+xcuserdata/
+*.user
+__pycache__/
+.DS_Store
